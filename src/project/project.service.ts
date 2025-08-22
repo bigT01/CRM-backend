@@ -21,8 +21,15 @@ export class ProjectService {
     });
   }
 
-  create(data: Project): Promise<Project> {
-    return this.projectRepository.save(data);
+  async create(createProjectDto: Partial<Project>): Promise<Project> {
+    const project = this.projectRepository.create(createProjectDto);
+    const saved = await this.projectRepository.save(project);
+
+    // подгружаем вместе с компанией
+    return this.projectRepository.findOne({
+      where: { id: saved.id },
+      relations: ['company'],
+    });
   }
 
   async update(id: string, updateData: Partial<Project>): Promise<Project> {
