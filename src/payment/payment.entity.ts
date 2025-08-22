@@ -6,6 +6,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Stuff } from '../stuff/stuff.entity';
+import { Project } from 'src/project/project.entity';
 
 @Entity()
 export class Payment {
@@ -14,6 +15,9 @@ export class Payment {
 
   @Column()
   staff_id: string;
+
+  @Column()
+  project_id: string;
 
   @Column({ type: 'int' })
   amount: number;
@@ -30,4 +34,10 @@ export class Payment {
   @ManyToOne(() => Stuff, (staff) => staff.payments, { onDelete: 'NO ACTION' })
   @JoinColumn({ name: 'staff_id' })
   staff: Stuff;
+
+  @ManyToOne(() => Project, (project) => project.payments, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'project_id' })
+  project: Project;
 }

@@ -24,6 +24,11 @@ export class ProjectController {
     return this.projectService.findOne(id);
   }
 
+  @Get('/developers/:id')
+  findOneWithDevelopers(@Param('id') id: string): Promise<Project> {
+    return this.projectService.findOneWithDevelopers(id);
+  }
+
   @Post()
   create(@Body() data: Project): Promise<Project> {
     return this.projectService.create(data);

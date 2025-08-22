@@ -21,6 +21,26 @@ export class ProjectService {
     });
   }
 
+  async findOneWithDevelopers(id: string) {
+    return this.projectRepository.findOne({
+      where: { id },
+      relations: ['developers', 'developers.staff'], // подтягиваем staff
+      select: {
+        id: true,
+        name: true,
+        developers: {
+          id: true,
+          compensation: true,
+          staff: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+      },
+    });
+  }
+
   async create(createProjectDto: Partial<Project>): Promise<Project> {
     const project = this.projectRepository.create(createProjectDto);
     const saved = await this.projectRepository.save(project);

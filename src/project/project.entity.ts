@@ -11,6 +11,7 @@ import { Company } from '../company/company.entity';
 import { Developer } from 'src/developers/developer.entity';
 import { ProjectUsage } from 'src/project-usage/project-usage.entity';
 import { ProjectDetail } from 'src/project-detail/project-detail.entity';
+import { Payment } from 'src/payment/payment.entity';
 
 @Entity()
 export class Project {
@@ -44,4 +45,7 @@ export class Project {
 
   @OneToMany(() => ProjectDetail, (detail) => detail.project)
   details: ProjectDetail[];
+
+  @OneToMany(() => Payment, (payment) => payment.project)
+  payments: Payment[];
 }
