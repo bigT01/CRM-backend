@@ -5,8 +5,12 @@ import {
   JoinColumn,
   CreateDateColumn,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from 'typeorm';
 import { Company } from '../company/company.entity';
+import { Developer } from 'src/developers/developer.entity';
+import { ProjectUsage } from 'src/project-usage/project-usage.entity';
+import { ProjectDetail } from 'src/project-detail/project-detail.entity';
 
 @Entity()
 export class Project {
@@ -31,4 +35,13 @@ export class Project {
   })
   @JoinColumn({ name: 'company_id' })
   company: Company;
+
+  @OneToMany(() => Developer, (developer) => developer.project)
+  developers: Developer[];
+
+  @OneToMany(() => ProjectUsage, (usage) => usage.project)
+  usages: ProjectUsage[];
+
+  @OneToMany(() => ProjectDetail, (detail) => detail.project)
+  details: ProjectDetail[];
 }

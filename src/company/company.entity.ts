@@ -9,6 +9,9 @@ export class Company {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  image_path: string;
+
   @Column()
   customer: string;
 

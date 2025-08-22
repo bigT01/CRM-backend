@@ -6,6 +6,10 @@ import { StuffModule } from './stuff/stuff.module';
 import { PhotosModule } from './photos/photos.module';
 import { CompanyModule } from './company/company.module';
 import { ProjectModule } from './project/project.module';
+import { DevelopersModule } from './developers/developers.module';
+import { PaymentModule } from './payment/payment.module';
+import { ProjectUsageModule } from './project-usage/project-usage.module';
+import { ProjectDetailModule } from './project-detail/project-detail.module';
 
 @Module({
   imports: [
@@ -23,6 +27,10 @@ import { ProjectModule } from './project/project.module';
     PhotosModule,
     CompanyModule,
     ProjectModule,
+    DevelopersModule,
+    PaymentModule,
+    ProjectUsageModule,
+    ProjectDetailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
