@@ -24,6 +24,11 @@ export class ProjectDetailController {
     return this.service.findOne(id);
   }
 
+  @Get('/project/:id')
+  findOneByProjectId(@Param('id') id: string): Promise<ProjectDetail> {
+    return this.service.findOneByProjectId(id);
+  }
+
   @Post()
   create(@Body() data: Partial<ProjectDetail>): Promise<ProjectDetail> {
     return this.service.create(data);

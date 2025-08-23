@@ -18,6 +18,10 @@ export class ProjectDetailService {
     return this.repo.findOne({ where: { id }, relations: ['project'] });
   }
 
+  findOneByProjectId(project_id: string): Promise<ProjectDetail> {
+    return this.repo.findOne({ where: { project_id }, relations: ['project'] });
+  }
+
   create(data: Partial<ProjectDetail>): Promise<ProjectDetail> {
     const detail = this.repo.create(data);
     return this.repo.save(detail);
