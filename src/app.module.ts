@@ -10,6 +10,8 @@ import { DevelopersModule } from './developers/developers.module';
 import { PaymentModule } from './payment/payment.module';
 import { ProjectUsageModule } from './project-usage/project-usage.module';
 import { ProjectDetailModule } from './project-detail/project-detail.module';
+import { MilestoneModule } from './milestone/milestone.module';
+import { DeveloperMilestoneCompletionModule } from './developer-milestone-completion/developer-milestone-completion.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { ProjectDetailModule } from './project-detail/project-detail.module';
     PaymentModule,
     ProjectUsageModule,
     ProjectDetailModule,
+    MilestoneModule,
+    DeveloperMilestoneCompletionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

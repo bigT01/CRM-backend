@@ -12,6 +12,7 @@ import { Developer } from 'src/developers/developer.entity';
 import { ProjectUsage } from 'src/project-usage/project-usage.entity';
 import { ProjectDetail } from 'src/project-detail/project-detail.entity';
 import { Payment } from 'src/payment/payment.entity';
+import { Milestone } from 'src/milestone/milestone.entity';
 
 @Entity()
 export class Project {
@@ -48,4 +49,7 @@ export class Project {
 
   @OneToMany(() => Payment, (payment) => payment.project)
   payments: Payment[];
+
+  @OneToMany(() => Milestone, (milestone) => milestone.project)
+  milestones: Milestone[];
 }

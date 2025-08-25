@@ -4,9 +4,11 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { Stuff } from '../stuff/stuff.entity';
 import { Project } from '../project/project.entity';
+import { DeveloperMilestoneCompletion } from 'src/developer-milestone-completion/developer-milestone-completion.entity';
 
 @Entity()
 export class Developer {
@@ -33,4 +35,10 @@ export class Developer {
   })
   @JoinColumn({ name: 'project_id' })
   project: Project;
+
+  @OneToMany(
+    () => DeveloperMilestoneCompletion,
+    (completion) => completion.developer,
+  )
+  milestoneCompletions: DeveloperMilestoneCompletion[];
 }
