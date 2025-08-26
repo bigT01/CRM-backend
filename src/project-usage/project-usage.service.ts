@@ -17,11 +17,12 @@ export class ProjectUsageService {
   async getStats(projectId: string) {
     return this.repo
       .createQueryBuilder('usage')
-      .select('usage.project_id', 'project_id')
+      .select("DATE_TRUNC('day', usage.date)", 'day')
       .addSelect('COUNT(*)', 'requests')
       .where('usage.project_id = :projectId', { projectId })
-      .groupBy('usage.project_id')
-      .getRawOne();
+      .groupBy("DATE_TRUNC('day', usage.date)")
+      .orderBy('day', 'ASC')
+      .getRawMany();
   }
 
   create(data: Partial<ProjectUsage>): Promise<ProjectUsage> {
