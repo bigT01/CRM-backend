@@ -20,6 +20,9 @@ export class Milestone {
   percentage_of_project: number;
 
   @Column({ type: 'timestamp', nullable: true })
+  start_date: Date;
+
+  @Column({ type: 'timestamp', nullable: true })
   completion_date: Date;
 
   @Column({ default: 'pending' })
