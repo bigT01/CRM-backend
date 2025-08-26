@@ -25,7 +25,10 @@ export class ProjectUsageService {
   }
 
   create(data: Partial<ProjectUsage>): Promise<ProjectUsage> {
-    const usage = this.repo.create(data);
+    const usage = this.repo.create({
+      ...data,
+      date: new Date(),
+    });
     return this.repo.save(usage);
   }
 }

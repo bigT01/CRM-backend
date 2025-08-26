@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, HttpCode } from '@nestjs/common';
 import { ProjectUsageService } from './project-usage.service';
 import { ProjectUsage } from './project-usage.entity';
 
@@ -19,5 +19,11 @@ export class ProjectUsageController {
   @Post()
   create(@Body() data: Partial<ProjectUsage>): Promise<ProjectUsage> {
     return this.service.create(data);
+  }
+
+  @Get(':projectId')
+  @HttpCode(204)
+  async trackUsage(@Param('projectId') projectId: string) {
+    await this.service.create({ project_id: projectId });
   }
 }
