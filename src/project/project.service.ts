@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, DataSource } from 'typeorm';
 import { Project } from './project.entity';
 
 @Injectable()
@@ -8,10 +8,31 @@ export class ProjectService {
   constructor(
     @InjectRepository(Project)
     private projectRepository: Repository<Project>,
+    private readonly dataSource: DataSource,
   ) {}
 
-  findAll(): Promise<Project[]> {
-    return this.projectRepository.find({ relations: ['company'] });
+  async findAll() {
+    const projects = await this.projectRepository.find({
+      relations: ['company'],
+    });
+
+    const result = await Promise.all(
+      projects.map(async (project) => {
+        const usageExists = await this.dataSource
+          .createQueryBuilder()
+          .select('1')
+          .from('project_usage', 'usage')
+          .where('usage.project_id = :id', { id: project.id })
+          .getRawOne();
+
+        return {
+          ...project,
+          projectStatConnection: !!usageExists, // 👈 true / false
+        };
+      }),
+    );
+
+    return result;
   }
 
   findOne(id: string): Promise<Project> {

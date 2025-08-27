@@ -12,6 +12,10 @@ import { ProjectUsageModule } from './project-usage/project-usage.module';
 import { ProjectDetailModule } from './project-detail/project-detail.module';
 import { MilestoneModule } from './milestone/milestone.module';
 import { DeveloperMilestoneCompletionModule } from './developer-milestone-completion/developer-milestone-completion.module';
+import { AdditionalServiceModule } from './additional-service/additional-service.module';
+import { DocumentsModule } from './documents/documents.module';
+import { CompanyDocumentModule } from './company-document/company-document.module';
+import { RevenueModule } from './revenue/revenue.module';
 
 @Module({
   imports: [
@@ -35,6 +39,10 @@ import { DeveloperMilestoneCompletionModule } from './developer-milestone-comple
     ProjectDetailModule,
     MilestoneModule,
     DeveloperMilestoneCompletionModule,
+    AdditionalServiceModule,
+    DocumentsModule,
+    CompanyDocumentModule,
+    RevenueModule,
   ],
   controllers: [AppController],
   providers: [AppService],

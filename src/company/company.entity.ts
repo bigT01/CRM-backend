@@ -1,4 +1,5 @@
 import { Project } from 'src/project/project.entity';
+import { Revenue } from 'src/revenue/revenue.entity';
 import { Entity, PrimaryColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
@@ -17,4 +18,7 @@ export class Company {
 
   @OneToMany(() => Project, (project) => project.company)
   projects: Project[];
+
+  @OneToMany(() => Revenue, (revenue) => revenue.company)
+  revenues: Revenue[];
 }

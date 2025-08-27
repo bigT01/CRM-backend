@@ -13,6 +13,7 @@ import { ProjectUsage } from 'src/project-usage/project-usage.entity';
 import { ProjectDetail } from 'src/project-detail/project-detail.entity';
 import { Payment } from 'src/payment/payment.entity';
 import { Milestone } from 'src/milestone/milestone.entity';
+import { AdditionalService } from 'src/additional-service/additional-service.entity';
 
 @Entity()
 export class Project {
@@ -52,4 +53,10 @@ export class Project {
 
   @OneToMany(() => Milestone, (milestone) => milestone.project)
   milestones: Milestone[];
+
+  @OneToMany(
+    () => AdditionalService,
+    (additionalService) => additionalService.project,
+  )
+  additionalServices: Milestone[];
 }
