@@ -11,11 +11,14 @@ export class PaymentService {
   ) {}
 
   findAll(): Promise<Payment[]> {
-    return this.repo.find({ relations: ['staff'] });
+    return this.repo.find({ relations: ['staff', 'project'] });
   }
 
   findOne(id: number): Promise<Payment> {
-    return this.repo.findOne({ where: { id }, relations: ['staff'] });
+    return this.repo.findOne({
+      where: { id },
+      relations: ['staff', 'project'],
+    });
   }
 
   create(data: Partial<Payment>): Promise<Payment> {

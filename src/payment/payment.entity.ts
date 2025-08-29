@@ -13,7 +13,7 @@ export class Payment {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   staff_id: string;
 
   @Column()
@@ -30,6 +30,9 @@ export class Payment {
 
   @Column({ nullable: true })
   method: string;
+
+  @Column({ nullable: true })
+  type: string;
 
   @ManyToOne(() => Stuff, (staff) => staff.payments, { onDelete: 'NO ACTION' })
   @JoinColumn({ name: 'staff_id' })
