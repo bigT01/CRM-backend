@@ -16,6 +16,7 @@ import { AdditionalServiceModule } from './additional-service/additional-service
 import { DocumentsModule } from './documents/documents.module';
 import { CompanyDocumentModule } from './company-document/company-document.module';
 import { RevenueModule } from './revenue/revenue.module';
+import { BillingModule } from './billing/billing.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { RevenueModule } from './revenue/revenue.module';
     DocumentsModule,
     CompanyDocumentModule,
     RevenueModule,
+    BillingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
